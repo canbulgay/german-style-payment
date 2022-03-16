@@ -15,4 +15,9 @@ class Order extends Model
     {
         return $this->belongsToMany(Item::class,'item_order')->withPivot('quentity','rate','amount');
     }
+
+    public function check()
+    {
+        return $this->belongsTo(Check::class);
+    }
 }

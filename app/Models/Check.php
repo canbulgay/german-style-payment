@@ -13,4 +13,9 @@ class Check extends Model
         'qr_url',
         'qr_photo'
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
