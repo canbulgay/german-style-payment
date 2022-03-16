@@ -38,4 +38,9 @@ class User extends Authenticatable
         'password',
         'role'
     ];
+
+    public function invoices()
+    {
+        return $this->belongsToMany(Invoice::class,'invoice_user');
+    }
 }

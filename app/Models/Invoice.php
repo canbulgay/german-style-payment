@@ -13,7 +13,7 @@ class Invoice extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class,'invoice_user');
     }
 
     public function check()
