@@ -15,7 +15,7 @@ class RegisterController extends Controller
 
      public function create()
      {
-         // Register Page .
+         return view('register');
      }
 
      /**
@@ -34,13 +34,14 @@ class RegisterController extends Controller
             'country' => 'required',
             'zip' => 'required',
             'phone' => 'required',
-            'password' => 'required|confirmed',
+            'password' => 'required|min:6|confirmed',
         ]);
-
+        
+        $credentials['password'] = bcrypt($credentials['password']);
         $user = User::create($credentials);
 
         // Users pasword hashing is in the model.
         
-        return response()->json($user,201);
+        return redirect('/dashboard')->with('success','Yes Bu bir kayıttır.');
      }
 }
