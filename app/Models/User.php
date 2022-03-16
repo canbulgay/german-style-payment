@@ -39,6 +39,10 @@ class User extends Authenticatable
         'role'
     ];
 
+    public function setPasswordAttribute($password){
+        return bcrypt($password);
+    }
+
     public function invoices()
     {
         return $this->belongsToMany(Invoice::class,'invoice_user');
