@@ -24,3 +24,8 @@ Route::get('/', function () {
 
 Route::get('register',[RegisterController::class,'create'])->middleware('guest');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest');
+
+Route::get('login',[SessionController::class,'create'])->middleware('guest');
+Route::post('/login',[SessionController::class,'store'])->middleware('guest');
+Route::get('/me',[SessionController::class,'me'])->middleware('auth');
+Route::get('/logout',[SessionController::class,'destroy'])->middleware('auth');
