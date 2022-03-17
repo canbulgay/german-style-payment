@@ -30,6 +30,5 @@ Route::post('/login',[SessionController::class,'store'])->middleware('guest')->n
 Route::get('/me',[SessionController::class,'me'])->middleware('auth');
 Route::get('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-});
+Route::get('/dashboard',[CheckController::class,'index'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard/{check}',[CheckController::class,'show'])->middleware('auth')->name('check');
