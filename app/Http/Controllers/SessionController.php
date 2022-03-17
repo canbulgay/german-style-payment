@@ -16,7 +16,7 @@ class SessionController extends Controller
 
      public function create()
      {
-         // Login view
+        return view('login');
      }
 
      /**
@@ -38,9 +38,9 @@ class SessionController extends Controller
            ]);
         }
 
-        Auth::login($credentials);
+        session()->regenerate();
+        return redirect('/dashboard')->with('success','You are successfully sign in!');
 
-        return response()->json(['message' => 'You are logged in successfully'],200);
       }
 
       /**
@@ -69,6 +69,6 @@ class SessionController extends Controller
         {
             auth()->logout();
 
-            return response()->json('You are successfully logged out!',200);
+            return redirect('/');
         }
 }
