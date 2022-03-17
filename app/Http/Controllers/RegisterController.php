@@ -29,6 +29,8 @@ class RegisterController extends Controller
         $credentials = $request->validate([
             'name' => 'required|alpha',
             'email' => 'required|email|unique:users,email',
+            'role' => 'required',
+            'company'=> 'required',
             'street_adress' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -36,12 +38,10 @@ class RegisterController extends Controller
             'phone' => 'required',
             'password' => 'required|min:6|confirmed',
         ]);
-        
+
         $credentials['password'] = bcrypt($credentials['password']);
         $user = User::create($credentials);
-
-        // Users pasword hashing is in the model.
         
-        return redirect('/dashboard')->with('success','Yes Bu bir kayıttır.');
+        return redirect('/login')->with('success','Your registration is complete, you can log in now. ');
      }
 }

@@ -288,6 +288,7 @@
                     <h1 class="text-2xl">Do you already have an account? <a href="/login" class="text-indigo-700 text-bold">Sign In !</a></h1>
                 </div>
                 </div>
+                <input type="hidden" name="role" value="user">
               </form>
             </div>
           </div>
