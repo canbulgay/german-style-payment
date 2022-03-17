@@ -13,7 +13,7 @@ class Order extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class,'item_order')->withPivot('quentity','rate','amount');
+        return $this->belongsToMany(Item::class,'item_order')->using(ItemOrder::class)->withPivot('quentity','rate','amount');
     }
 
     public function check()

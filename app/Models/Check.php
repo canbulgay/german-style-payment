@@ -18,4 +18,9 @@ class Check extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function items()
+    {
+        return $this->hasManyThrough(ItemOrder::class,Order::class,'check_id','order_id','id','id');
+    }
 }
