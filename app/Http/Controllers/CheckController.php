@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Check;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the checks.
      *
-     * @return \Illuminate\Http\Response
+     * @return view
      */
     public function index()
     {
@@ -22,49 +24,26 @@ class CheckController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Check  $check
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $check = Check::with('items')->whereId($id)->first();
+        $check = Check::with('items','users')->whereId($id)->first();
+        $authUser = Auth::user();
+
+        if(count($check->users) > 0){
+            foreach($check->users as $user){
+                if($user->pivot->user_id !== $authUser->id){
+                    $check->users()->attach($authUser->id);
+                }
+            }
+        }else{
+            $check->users()->attach($authUser->id);
+        }
 
         return view('Check',[
             'check' => $check,
-            'items' => $check->items
+            'items' => $check->items,
+            'user' => $authUser,
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Check  $check
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Check $check)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Check  $check
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Check $check)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Check  $check
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Check $check)
-    {
-        //
     }
 }
