@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Check;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
@@ -32,5 +33,11 @@ class AppServiceProvider extends ServiceProvider
         }catch(\Throwable $th){
             View::share('checks',[]);
         }
+        try {
+            View::share('admin',User::whereRole('admin')->first());
+        } catch (\Throwable $th) {
+            View::share('admin',[]);
+        }
+        
     }
 }
