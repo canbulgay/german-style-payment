@@ -22,10 +22,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('register',[RegisterController::class,'create'])->middleware('guest')->name('register.create');
+Route::get('register',[RegisterController::class,'create'])->middleware('guest')->name('register');
 Route::post('/register',[RegisterController::class,'store'])->middleware('guest')->name('register.store');
 
-Route::get('/login',[SessionController::class,'create'])->middleware('guest')->name('login.create');
+Route::get('/login',[SessionController::class,'create'])->middleware('guest')->name('login');
 Route::post('/login',[SessionController::class,'store'])->middleware('guest')->name('login.store');
 Route::get('/me',[SessionController::class,'me'])->middleware('auth');
 Route::get('/logout',[SessionController::class,'destroy'])->middleware('auth');
