@@ -23,4 +23,9 @@ class Check extends Model
     {
         return $this->hasManyThrough(ItemOrder::class,Order::class,'check_id','order_id','id','id');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

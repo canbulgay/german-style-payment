@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Invoice::class,'invoice_user');
     }
+
+    public function checks()
+    {
+        return $this->belongsToMany(Check::class);
+    }
 }
