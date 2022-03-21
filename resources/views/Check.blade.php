@@ -17,6 +17,8 @@
     <div class="container mx-auto text-2xl">
         <div class="grid grid-cols-4 gap-2">
             <div class="p-10 col-span-2 rounded border-4 border-black border-dashed mt-10 bg-gray-100">
+                <form action="{{route('test')}}" method="POST">
+                    @csrf
                 <header>
                     <div class="text-center">
                         {{$admin->company}} <br>
@@ -30,7 +32,7 @@
                     </header>
             <hr>
             <body>
-                <div class="grid grid-cols-7 gap-6 my-3">
+                <div class="grid grid-cols-8 gap-6 my-3">
                     <div class="col-span-2">
                         <span>Quentity</span>
                     </div>
@@ -40,9 +42,12 @@
                     <div class="col-span-3 text-center">
                         <span>Rate</span>
                     </div>
+                    <div class="col-span-1">
+
+                    </div>
                 </div>
                 <hr>
-                <div class="grid grid-cols-7 gap-4 my-3">
+                <div class="grid grid-cols-8 gap-4 my-3">
                     @foreach ($items as $item)
                     <div class="col-span-2">
                         <span>{{$item->quentity}}</span>
@@ -53,6 +58,9 @@
                     <div class="col-span-3 text-center">
                         <span>{{$item->rate}}</span>
                     </div>
+                    <div class="col-span-1">
+                        <input type="radio" name="{{$item}}">
+                    </div>
                     @endforeach
                 </div>
             </body>
@@ -62,12 +70,11 @@
                 <div></div>
             </footer>
             </div>
-        <div class="my-10 col-span-2">
-            <form action="" method="POST">
-                <input type="radio" class="ml-5"> My invoice will be automatically sent to my e-mail <br>
-                <button type="button" class="px-8 py-3 text-white bg-purple-600 rounded cursor-pointer focus:outline-none ml-5 mt-5">Pay with wallet</button>
-            </form>
-        </div>
+            <div class="my-10 col-span-2">
+                <input type="radio" class="ml-5" name="invoice" value="invoice"> My invoice will be automatically sent to my e-mail <br>
+                <button type="submit" class="px-8 py-3 text-white bg-purple-600 rounded cursor-pointer focus:outline-none ml-5 mt-5">Pay with wallet</button>
+            </div>
+        </form>
     </div>
 </div>
 </body>
