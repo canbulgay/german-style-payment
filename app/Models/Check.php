@@ -21,7 +21,7 @@ class Check extends Model
 
     public function items()
     {
-        return $this->hasManyThrough(ItemOrder::class,Order::class,'check_id','order_id','id','id');
+        return $this->hasManyThrough(ItemOrder::class,Order::class,'check_id','order_id','id','id')->where('check','open');
     }
 
     public function users()

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('quentity')->nullable();
             $table->integer('rate')->nullable();
             $table->double('amount')->storedAs('quentity * rate');
+            $table->enum('check',['closed','open'])->default('open');
             $table->timestamps();
         });
     }
