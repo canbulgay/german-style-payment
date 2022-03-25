@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -42,6 +43,13 @@ class DatabaseSeeder extends Seeder
                 'check_id' =>  \App\Models\Check::inRandomOrder()->pluck('id')->first(),
             ]);
         }
+
+        foreach (User::all() as $user) {
+            Wallet::create([
+                'user_id' => $user->id,
+                'amount' => rand(2000,7000),
+            ]);
+        }   
 
 
 
