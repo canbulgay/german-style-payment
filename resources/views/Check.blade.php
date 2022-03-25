@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="container mx-auto text-2xl">
+            @if (session('success'))
+            <div class="border-2 bg-green-400 text-white mb-3 w-1/2 p-5 mt-4 text-center mx-auto">{{session('success')}}</div>
+            @elseif (session('error'))
+            <div class="border-2 bg-red-400 text-white mb-3  w-1/2 p-5 mt-4 text-center mx-auto">{{session('error')}}</div>
+            @endif
         <div class="grid grid-cols-4 gap-2">
             <div class="p-10 col-span-2 rounded border-4 border-black border-dashed mt-10 bg-gray-100">
                 <form action="{{route('pay')}}" method="POST">

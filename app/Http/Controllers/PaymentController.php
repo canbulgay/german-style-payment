@@ -44,7 +44,7 @@ class PaymentController extends Controller
                     $itemOrder->save();
                 }
 
-                return back();
+                return back()->with('success','Your payment has been received.');
             }
         }
         
