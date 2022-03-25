@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
-use App\Models\Check;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +32,5 @@ Route::get('/logout',[SessionController::class,'destroy'])->middleware('auth');
 
 Route::get('/dashboard',[CheckController::class,'index'])->middleware('auth')->name('dashboard');
 Route::get('/dashboard/{check}',[CheckController::class,'show'])->middleware('auth')->name('check');
+
+Route::post('/payment',[PaymentController::class,'pay'])->middleware('auth')->name('pay');
